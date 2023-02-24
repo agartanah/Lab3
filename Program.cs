@@ -14,6 +14,29 @@ namespace Lab3 {
 
       Array1.PrintMatrix();
       Array2.PrintMatrix();
+
+      SquareMatrix Array3 = new SquareMatrix(Side);
+      Array3 = Array1 + Array2;
+      Array3.PrintMatrix();
+
+      Array3 = Array1 - Array2;
+      Array3.PrintMatrix();
+
+      Array3 = Array1 * Array2;
+      Array3.PrintMatrix();
+
+      Console.WriteLine("Array1 < Array2\t" + (Array1 < Array2));
+
+      Console.WriteLine("Array1 > Array2\t" + (Array1 > Array2));
+
+      Console.WriteLine("Array1 == Array2\t" + (Array1 == Array2));
+
+      Console.WriteLine("Array1 != Array2\t" + (Array1 == Array2));
+
+      Console.WriteLine("Array1 <= Array2\t" + (Array1 == Array2));
+
+      Console.WriteLine("Array1 >= Array2\t" + (Array1 == Array2));
+
     }
   }
 }
