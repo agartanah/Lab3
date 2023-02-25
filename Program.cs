@@ -31,11 +31,11 @@ namespace Lab3 {
 
       Console.WriteLine("Array1 == Array2\t" + (Array1 == Array2));
 
-      Console.WriteLine("Array1 != Array2\t" + (Array1 == Array2));
+      Console.WriteLine("Array1 != Array2\t" + (Array1 != Array2));
 
-      Console.WriteLine("Array1 <= Array2\t" + (Array1 == Array2));
+      Console.WriteLine("Array1 <= Array2\t" + (Array1 <= Array2));
 
-      Console.WriteLine("Array1 >= Array2\t" + (Array1 == Array2));
+      Console.WriteLine("Array1 >= Array2\t" + (Array1 >= Array2));
 
     }
   }
