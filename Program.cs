@@ -37,6 +37,19 @@ namespace Lab3 {
 
       Console.WriteLine("Array1 >= Array2\t" + (Array1 >= Array2));
 
+      string[,] ArrayString = Array3;
+
+      foreach (var StringElement in ArrayString) {
+        Console.WriteLine(StringElement + "\t");
+      }
+
+      Console.WriteLine(Array3.ToString());
+
+      Console.WriteLine(Array3.GetHashCode());
+
+      Console.WriteLine(+Array2);
+
+      Console.WriteLine((-Array2).ToString());
     }
   }
 }
