@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lab3 {
   class SquareMatrix {
-    int Side;
-    double[,] ArraySquare;
+    public int Side;
+    public double[,] ArraySquare;
     Random ValRandom = new Random(Guid.NewGuid().GetHashCode());
 
     public SquareMatrix() {
