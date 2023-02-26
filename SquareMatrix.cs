@@ -23,6 +23,11 @@ namespace Lab3 {
 
     public SquareMatrix(int Side) {
       this.Side = Side;
+
+      if (Side == 0) {
+        throw new MatrixSideIsZero("Side of Matrix Equal of Zero!");
+      }
+
       ArraySquare = new double[Side, Side];
 
       for (int RowIndex = 0; RowIndex < Side; ++RowIndex) {
@@ -40,6 +45,10 @@ namespace Lab3 {
     }
 
     public static SquareMatrix operator +(SquareMatrix MatrixLeft, SquareMatrix MatrixRight) {
+      if(MatrixLeft.Side != MatrixRight.Side) {
+        throw new DifferentSides("Matrixes have different sides!\n\tIt is impossible to perform an operation!");
+      }
+      
       SquareMatrix MatrixResult = new SquareMatrix(MatrixLeft.Side);
 
       for (int RowIndex = 0; RowIndex < MatrixLeft.Side; RowIndex++) {
@@ -53,6 +62,10 @@ namespace Lab3 {
     }
 
     public static SquareMatrix operator -(SquareMatrix MatrixLeft, SquareMatrix MatrixRight) {
+      if (MatrixLeft.Side != MatrixRight.Side) {
+        throw new DifferentSides("Matrixes have different sides!\n\tIt is impossible to perform an operation!");
+      }
+
       SquareMatrix MatrixResult = new SquareMatrix(MatrixLeft.Side);
 
       for (int RowIndex = 0; RowIndex < MatrixLeft.Side; RowIndex++) {
@@ -66,6 +79,10 @@ namespace Lab3 {
     }
 
     public static SquareMatrix operator *(SquareMatrix MatrixLeft, SquareMatrix MatrixRight) {
+      if (MatrixLeft.Side != MatrixRight.Side) {
+        throw new DifferentSides("Matrixes have different sides!\n\tIt is impossible to perform an operation!");
+      }
+
       SquareMatrix MatrixResult = new SquareMatrix(MatrixLeft.Side);
 
       for (int RowIndex = 0; RowIndex < MatrixLeft.Side; RowIndex++) {
@@ -287,6 +304,9 @@ namespace Lab3 {
     public static SquareMatrix operator -(SquareMatrix Matrix) {
       SquareMatrix MatrixResult = new SquareMatrix(Matrix.Side);
       double MatrixDeterminant = Determinant(Matrix.ArraySquare, Matrix.Side);
+      if (MatrixDeterminant == 0) {
+        throw new DeterminantIsZero("The determinant is zero! It is impossible to calculate the inverse matrix!");
+      }
       double[,] MatrixAlgebraicComplement = new double[Matrix.Side, Matrix.Side];
 
       for (int RowElementsIndex = 0; RowElementsIndex < Matrix.Side; ++RowElementsIndex) {
@@ -362,7 +382,7 @@ namespace Lab3 {
 
         return MatrixDeterminant;
       } else {
-        return 0;
+        throw new MatrixSideIsZero("The side of a square matrix is zero! Incorrect side value!");
       }
     }
 
@@ -402,7 +422,7 @@ namespace Lab3 {
 
         return MatrixDeterminant;
       } else {
-        return 0;
+        throw new MatrixSideIsZero("The side of a square matrix is zero! Incorrect side value!");
       }
     }
 
