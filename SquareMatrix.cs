@@ -51,8 +51,8 @@ namespace Lab3 {
       
       SquareMatrix MatrixResult = new SquareMatrix(MatrixLeft.Side);
 
-      for (int RowIndex = 0; RowIndex < MatrixLeft.Side; RowIndex++) {
-        for (int ColumnIndex = 0; ColumnIndex < MatrixLeft.Side; ColumnIndex++) {
+      for (int RowIndex = 0; RowIndex < MatrixLeft.Side; ++RowIndex) {
+        for (int ColumnIndex = 0; ColumnIndex < MatrixLeft.Side; ++ColumnIndex) {
           MatrixResult.ArraySquare[RowIndex, ColumnIndex] = MatrixLeft.ArraySquare[RowIndex, ColumnIndex] +
             MatrixRight.ArraySquare[RowIndex, ColumnIndex];
         }
@@ -68,8 +68,8 @@ namespace Lab3 {
 
       SquareMatrix MatrixResult = new SquareMatrix(MatrixLeft.Side);
 
-      for (int RowIndex = 0; RowIndex < MatrixLeft.Side; RowIndex++) {
-        for (int ColumnIndex = 0; ColumnIndex < MatrixLeft.Side; ColumnIndex++) {
+      for (int RowIndex = 0; RowIndex < MatrixLeft.Side; ++RowIndex) {
+        for (int ColumnIndex = 0; ColumnIndex < MatrixLeft.Side; ++ColumnIndex) {
           MatrixResult.ArraySquare[RowIndex, ColumnIndex] = MatrixLeft.ArraySquare[RowIndex, ColumnIndex] -
             MatrixRight.ArraySquare[RowIndex, ColumnIndex];
         }
@@ -85,8 +85,8 @@ namespace Lab3 {
 
       SquareMatrix MatrixResult = new SquareMatrix(MatrixLeft.Side);
 
-      for (int RowIndex = 0; RowIndex < MatrixLeft.Side; RowIndex++) {
-        for (int ColumnIndex = 0; ColumnIndex < MatrixLeft.Side; ColumnIndex++) {
+      for (int RowIndex = 0; RowIndex < MatrixLeft.Side; ++RowIndex) {
+        for (int ColumnIndex = 0; ColumnIndex < MatrixLeft.Side; ++ColumnIndex) {
           MatrixResult.ArraySquare[RowIndex, ColumnIndex] = MatrixLeft.ArraySquare[RowIndex, ColumnIndex] *
             MatrixRight.ArraySquare[RowIndex, ColumnIndex];
         }
@@ -135,6 +135,7 @@ namespace Lab3 {
       foreach (var MatrixElement in MatrixLeft.ArraySquare) {
         MatrixLeftSum += MatrixElement;
       }
+
       foreach (var MatrixElement in MatrixRight.ArraySquare) {
         MatrixRightSum += MatrixElement;
       }
@@ -219,7 +220,7 @@ namespace Lab3 {
       string[,] MatrixString = new string[Matrix.Side, Matrix.Side];
 
       for (int RowIndex = 0; RowIndex < Matrix.Side; ++RowIndex) {
-        for (int ColumnIndex = 0; ColumnIndex < Matrix.Side; ColumnIndex++) {
+        for (int ColumnIndex = 0; ColumnIndex < Matrix.Side; ++ColumnIndex) {
           MatrixString[RowIndex, ColumnIndex] = Matrix.ArraySquare[RowIndex, ColumnIndex].ToString();
         }
       }
@@ -231,7 +232,7 @@ namespace Lab3 {
       int[,] MatrixString = new int[Matrix.Side, Matrix.Side];
 
       for (int RowIndex = 0; RowIndex < Matrix.Side; ++RowIndex) {
-        for (int ColumnIndex = 0; ColumnIndex < Matrix.Side; ColumnIndex++) {
+        for (int ColumnIndex = 0; ColumnIndex < Matrix.Side; ++ColumnIndex) {
           MatrixString[RowIndex, ColumnIndex] = (int)Matrix.ArraySquare[RowIndex, ColumnIndex];
         }
       }
@@ -243,7 +244,7 @@ namespace Lab3 {
       double[,] MatrixString = new double[Matrix.Side, Matrix.Side];
 
       for (int RowIndex = 0; RowIndex < Matrix.Side; ++RowIndex) {
-        for (int ColumnIndex = 0; ColumnIndex < Matrix.Side; ColumnIndex++) {
+        for (int ColumnIndex = 0; ColumnIndex < Matrix.Side; ++ColumnIndex) {
           MatrixString[RowIndex, ColumnIndex] = (double)Matrix.ArraySquare[RowIndex, ColumnIndex];
         }
       }
@@ -276,8 +277,8 @@ namespace Lab3 {
     }
 
     public static void Transposition(ref int[,] Matrix, int MatrixSide) {
-      for (int RowIndex = 0; RowIndex < MatrixSide; RowIndex++) {
-        for (int ColumnIndex = 0; ColumnIndex < MatrixSide; ColumnIndex++) {
+      for (int RowIndex = 0; RowIndex < MatrixSide; ++RowIndex) {
+        for (int ColumnIndex = 0; ColumnIndex < MatrixSide; ++ColumnIndex) {
           if (RowIndex != ColumnIndex) {
             int Element = Matrix[RowIndex, ColumnIndex];
 
@@ -289,8 +290,8 @@ namespace Lab3 {
     }
 
     public static void Transposition(ref double[,] Matrix, int MatrixSide) {
-      for (int RowIndex = 0; RowIndex < MatrixSide; RowIndex++) {
-        for (int ColumnIndex = 0; ColumnIndex < MatrixSide; ColumnIndex++) {
+      for (int RowIndex = 0; RowIndex < MatrixSide; ++RowIndex) {
+        for (int ColumnIndex = 0; ColumnIndex < MatrixSide; ++ColumnIndex) {
           if (RowIndex != ColumnIndex) {
             double Element = Matrix[RowIndex, ColumnIndex];
 
@@ -336,7 +337,7 @@ namespace Lab3 {
       }
 
       for (int RowIndex = 0; RowIndex < Matrix.Side; ++RowIndex) {
-        for (int ColumnIndex = 0; ColumnIndex < Matrix.Side; ColumnIndex++) {
+        for (int ColumnIndex = 0; ColumnIndex < Matrix.Side; ++ColumnIndex) {
           MatrixAlgebraicComplement[RowIndex, ColumnIndex] *= (1 / MatrixDeterminant);
         }
       }
@@ -387,8 +388,9 @@ namespace Lab3 {
     }
 
     public static double Determinant(double[,] Matrix, int MatrixSide) {
-
-      if (MatrixSide == 2) {
+      if (MatrixSide < 1) {
+        throw new MatrixSideIsZero("The side of a square matrix is zero! Incorrect side value!");
+      } else if (MatrixSide == 2) {
         return (Matrix[0, 0] * Matrix[1, 1] -
           Matrix[0, 1] * Matrix[1, 0]);
       } else if (MatrixSide == 1) {
@@ -421,8 +423,6 @@ namespace Lab3 {
         }
 
         return MatrixDeterminant;
-      } else {
-        throw new MatrixSideIsZero("The side of a square matrix is zero! Incorrect side value!");
       }
     }
 
