@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab3 {
   class SquareMatrix {
@@ -101,15 +97,12 @@ namespace Lab3 {
       foreach (var MatrixElement in MatrixLeft.ArraySquare) {
         MatrixLeftSum += MatrixElement;
       }
+
       foreach (var MatrixElement in MatrixRight.ArraySquare) {
         MatrixRightSum += MatrixElement;
       }
 
-      if (MatrixLeftSum < MatrixRightSum) {
-        return true;
-      } else {
-        return false;
-      }
+      return (MatrixLeftSum < MatrixRightSum);
     }
 
     public static bool operator >(SquareMatrix MatrixLeft, SquareMatrix MatrixRight) {
@@ -118,15 +111,12 @@ namespace Lab3 {
       foreach (var MatrixElement in MatrixLeft.ArraySquare) {
         MatrixLeftSum += MatrixElement;
       }
+
       foreach (var MatrixElement in MatrixRight.ArraySquare) {
         MatrixRightSum += MatrixElement;
       }
 
-      if (MatrixLeftSum > MatrixRightSum) {
-        return true;
-      } else {
-        return false;
-      }
+      return (MatrixLeftSum > MatrixRightSum);
     }
 
     public static bool operator <=(SquareMatrix MatrixLeft, SquareMatrix MatrixRight) {
@@ -140,11 +130,7 @@ namespace Lab3 {
         MatrixRightSum += MatrixElement;
       }
 
-      if (MatrixLeftSum <= MatrixRightSum) {
-        return true;
-      } else {
-        return false;
-      }
+      return (MatrixLeftSum <= MatrixRightSum);
     }
 
     public static bool operator >=(SquareMatrix MatrixLeft, SquareMatrix MatrixRight) {
@@ -153,15 +139,12 @@ namespace Lab3 {
       foreach (var MatrixElement in MatrixLeft.ArraySquare) {
         MatrixLeftSum += MatrixElement;
       }
+
       foreach (var MatrixElement in MatrixRight.ArraySquare) {
         MatrixRightSum += MatrixElement;
       }
 
-      if (MatrixLeftSum >= MatrixRightSum) {
-        return true;
-      } else {
-        return false;
-      }
+      return (MatrixLeftSum >= MatrixRightSum);
     }
 
     public static bool operator ==(SquareMatrix MatrixLeft, SquareMatrix MatrixRight) {
@@ -170,15 +153,12 @@ namespace Lab3 {
       foreach (var MatrixElement in MatrixLeft.ArraySquare) {
         MatrixLeftSum += MatrixElement;
       }
+
       foreach (var MatrixElement in MatrixRight.ArraySquare) {
         MatrixRightSum += MatrixElement;
       }
 
-      if (MatrixLeftSum == MatrixRightSum) {
-        return true;
-      } else {
-        return false;
-      }
+      return (MatrixLeftSum == MatrixRightSum);
     }
 
     public static bool operator !=(SquareMatrix MatrixLeft, SquareMatrix MatrixRight) {
@@ -187,15 +167,12 @@ namespace Lab3 {
       foreach (var MatrixElement in MatrixLeft.ArraySquare) {
         MatrixLeftSum += MatrixElement;
       }
+
       foreach (var MatrixElement in MatrixRight.ArraySquare) {
         MatrixRightSum += MatrixElement;
       }
 
-      if (MatrixLeftSum != MatrixRightSum) {
-        return true;
-      } else {
-        return false;
-      }
+      return (MatrixLeftSum != MatrixRightSum);
     }
 
     public static bool operator true(SquareMatrix Matrix) {
@@ -208,12 +185,18 @@ namespace Lab3 {
     }
 
     public static bool operator false(SquareMatrix Matrix) {
+      int Counter = default;
+
       foreach (var MatrixElement in Matrix.ArraySquare) {
         if (MatrixElement == 0) {
-          return true;
+          ++Counter;
         }
       }
-      return false;
+
+      if (Counter == Matrix.ArraySquare.Length) {
+        return false;
+      }
+      return true;
     }
 
     public static implicit operator string[,](SquareMatrix Matrix) {
@@ -348,7 +331,6 @@ namespace Lab3 {
     }
 
     public static double Determinant(int[,] Matrix, int MatrixSide) {
-
       if (MatrixSide == 2) {
         return (Matrix[0, 0] * Matrix[1, 1] -
           Matrix[0, 1] * Matrix[1, 0]);
@@ -388,9 +370,7 @@ namespace Lab3 {
     }
 
     public static double Determinant(double[,] Matrix, int MatrixSide) {
-      if (MatrixSide < 1) {
-        throw new MatrixSideIsZero("The side of a square matrix is zero! Incorrect side value!");
-      } else if (MatrixSide == 2) {
+      if (MatrixSide == 2) {
         return (Matrix[0, 0] * Matrix[1, 1] -
           Matrix[0, 1] * Matrix[1, 0]);
       } else if (MatrixSide == 1) {
@@ -424,6 +404,8 @@ namespace Lab3 {
 
         return MatrixDeterminant;
       }
+      
+      throw new MatrixSideIsZero("The side of a square matrix is zero! Incorrect side value!");
     }
 
     public static double operator +(SquareMatrix Matrix) {
