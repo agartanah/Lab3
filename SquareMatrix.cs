@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Lab3 {
-  class SquareMatrix {
+  public class SquareMatrix {
     public int Side;
     public double[,] ArraySquare;
     Random ValRandom = new Random(Guid.NewGuid().GetHashCode());
