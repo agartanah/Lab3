@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lab3 {
+﻿namespace Lab3 {
   public static class ExtensionMethods {
     public static void Transpose(ref SquareMatrix Matrix) {
       for (int RowIndex = 0; RowIndex < Matrix.Side; ++RowIndex) {
