@@ -34,12 +34,25 @@ namespace Lab3 {
     }
 
     public void PrintMatrix() {
-      foreach (var MatrixElement in ArraySquare) {
-        Console.Write(MatrixElement + " ");
+      for (int RowIndex = 0; RowIndex < Side; ++RowIndex) {
+        for (int ColumnIndex = 0; ColumnIndex < Side; ++ColumnIndex) {
+          Console.Write(ArraySquare[RowIndex, ColumnIndex] + "\t");
+        }
+        Console.WriteLine();
       }
-      Console.WriteLine();
     }
 
+    public static void TriangleMatrix(SquareMatrix Matrix) {
+      double n = Matrix.ArraySquare.GetLength(0);
+      for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+          double koef = Matrix.ArraySquare[j, i] / Matrix.ArraySquare[i, i];
+          for (int k = i; k < n; k++) {
+            Matrix.ArraySquare[j, k] -= Matrix.ArraySquare[i, k] * koef;
+          }
+        }
+      }
+    }
     public static SquareMatrix operator +(SquareMatrix MatrixLeft, SquareMatrix MatrixRight) {
       if(MatrixLeft.Side != MatrixRight.Side) {
         throw new DifferentSides("Matrixes have different sides!\n\tIt is impossible to perform an operation!");
