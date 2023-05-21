@@ -13,55 +13,15 @@ namespace Lab3 {
 
       Console.WriteLine("Что с ними делать?\n\t1. Сложить\n\t2. Вычесть вторую из первой\n\t" +
         "3. Вычесть первую из второй\n\t4. Пермножить\n\t5. Найти Детерминанту желаемой матрицы\n\t" +
-        "6. Найти матрицу Обратную желаемой\n");
+        "6. Найти матрицу Обратную желаемой\n\t7. Привести матрицу к треугольному виду\n");
       Console.Write("Введите желаемый пункт: ");
       int UserChoice = int.Parse(Console.ReadLine());
 
-      switch (UserChoice) {
-        case 1:
-          Console.WriteLine($"Сумма матриц равна:\n{Matrix1 + Matrix2}");
-          break;
-        case 2:
-          Console.WriteLine($"Разность (Первая - Вторая) равна:\n{Matrix1 - Matrix2}");
-          break;
-        case 3:
-          Console.WriteLine($"Разность (Вторая - Первая) равна:\n{Matrix2 - Matrix1}");
-          break;
-        case 4:
-          Console.WriteLine($"Произведение матриц равно:\n{Matrix1 * Matrix2}");
-          break;
-        case 5:
-          Console.WriteLine($"Выберите одну из матриц:\n   1.\n{Matrix1}\n   2.\n{Matrix2}");
-          Console.WriteLine("Введите номер матрицы, Детерминант которой хотите вычислить:\n");
-          int UserChoice2 = int.Parse(Console.ReadLine());
+      Start Hand = new Start();
+      
+      Hand.HandleD(Matrix1, Matrix2, UserChoice); // запуск цепочки обязанностей
 
-          if (UserChoice2 == 1) {
-            Console.WriteLine($"Детерминант матрицы №{UserChoice2} равен: {+Matrix1}");
-          } else if (UserChoice2 == 2) {
-            Console.WriteLine($"Детерминант матрицы №{UserChoice2} равен: {+Matrix2}");
-          } else {
-            Console.WriteLine("Нет матрицы под таким номером! Попробуйте снова!");
-          }
-
-          break;
-        case 6:
-          Console.WriteLine($"Выберите одну из матриц:\n   1.\n{Matrix1}\n   2.\n{Matrix2}");
-          Console.WriteLine("Введите номер матрицы, Обратную матрицу которой хотите найти:\n");
-          int UserChoice3 = int.Parse(Console.ReadLine());
-
-          if (UserChoice3 == 1) {
-            Console.WriteLine($"Обратной матрицей матрицы №{UserChoice3} является:\n{-Matrix1}");
-          } else if (UserChoice3 == 2) {
-            Console.WriteLine($"Обратной матрицей матрицы №{UserChoice3} является:\n{-Matrix2}");
-          } else {
-            Console.WriteLine("Нет матрицы под таким номером! Попробуйте снова!");
-          }
-
-          break;
-        default:
-          Console.WriteLine("Введён неверный пункт! Попробуйте снова!");
-          break;
-      }
+      Console.ReadKey();
     }
   }
 }
