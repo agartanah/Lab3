@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="DeterminantIsZero.cs" />
     <Compile Include="DifferentSides.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="MatrixSideIsZero.cs" />
+    <Compile Include="Chain.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PrototypeSquareMatrix.cs" />
