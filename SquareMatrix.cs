@@ -272,30 +272,19 @@ namespace Lab3 {
       return MatrixClass;
     }
 
-    public static void Transposition(ref int[,] Matrix, int MatrixSide) {
-      for (int RowIndex = 0; RowIndex < MatrixSide; ++RowIndex) {
-        for (int ColumnIndex = 0; ColumnIndex < MatrixSide; ++ColumnIndex) {
-          if (RowIndex != ColumnIndex) {
-            int Element = Matrix[RowIndex, ColumnIndex];
+    public double[,] Transposition() {
+      for (int RowIndex = 0; RowIndex < Side; ++RowIndex) {
+        for (int ColumnIndex = RowIndex + 1; ColumnIndex < Side; ++ColumnIndex) {
+          if (RowIndex < ColumnIndex) {
+            double Element = ArraySquare[RowIndex, ColumnIndex];
 
-            Matrix[RowIndex, ColumnIndex] = Matrix[ColumnIndex, RowIndex];
-            Matrix[ColumnIndex, RowIndex] = Element;
+            ArraySquare[RowIndex, ColumnIndex] = ArraySquare[ColumnIndex, RowIndex];
+            ArraySquare[ColumnIndex, RowIndex] = Element;
           }
         }
       }
-    }
 
-    public static void Transposition(ref double[,] Matrix, int MatrixSide) {
-      for (int RowIndex = 0; RowIndex < MatrixSide; ++RowIndex) {
-        for (int ColumnIndex = 0; ColumnIndex < MatrixSide; ++ColumnIndex) {
-          if (RowIndex != ColumnIndex) {
-            double Element = Matrix[RowIndex, ColumnIndex];
-
-            Matrix[RowIndex, ColumnIndex] = Matrix[ColumnIndex, RowIndex];
-            Matrix[ColumnIndex, RowIndex] = Element;
-          }
-        }
-      }
+      return ArraySquare;
     }
 
     public static SquareMatrix operator -(SquareMatrix Matrix) {
